@@ -1,0 +1,3 @@
+Pillow
+django_social
+django bootstrap 
