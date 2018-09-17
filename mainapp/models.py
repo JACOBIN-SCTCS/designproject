@@ -35,7 +35,7 @@ class AlmaUser(models.Model):
 
     facebook_url=models.CharField(max_length=70)
     linked_in_url=models.CharField(max_length=70)
-    profile_pic=models.ImageField()
+    profile_pic=models.ImageField(upload_to='profile_pic',blank=True)
     
 
     def __str__(self):

@@ -19,13 +19,14 @@ def homepage(request):
         return redirect('mainapp:createuser')
 
 def dashboard(request):
-    return HttpResponse('GFGDFGDFG')
+    user=AlmaUser.objects.get(user_email=request.user.email)
+    return render(request,'mainapp/dashboard.html', {'user':user} )
 
 
 class AlmaUserCreateView(CreateView):
 
     model=AlmaUser
-    fields =['name','start_year' ,'end_year','dept','current_pos','facebook_url','linked_in_url']
+    fields =['name','start_year' ,'end_year','dept','current_pos','facebook_url','linked_in_url','profile_pic']
     template_name_suffix='_createform'
     success_url='/dashboard/'
 
