@@ -1,3 +1,6 @@
 Pillow
 django_social
-django bootstrap 
+django_bootstrap 
+
+
+STATIC FILES DURING DEVELOPMENT TO PRODUCTION
