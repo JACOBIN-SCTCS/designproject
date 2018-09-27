@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 import datetime
 
 START_YEAR_CHOICES =[]
@@ -25,6 +26,7 @@ DEPARTMENT_CHOICES =(
 # Create your models here.
 class AlmaUser(models.Model):
     user_id=models.AutoField(primary_key=True)
+    user_obj=models.ForeignKey(User,null=True, blank=True, on_delete=models.CASCADE)
     name=models.CharField(max_length=60,default='')
     user_email=models.CharField(max_length=40,default='')
     #mobile no
