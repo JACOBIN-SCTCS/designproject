@@ -27,6 +27,10 @@
         background-color: #F5F5F5;
     }
     
+    .asteriskField {
+    display: none;
+    }
+
     </style>
   
 </head>
@@ -65,16 +69,20 @@
                     <div class="col-xl-2"></div>
                     <div class="col-xs-12 col-xl-8">
         
-                        <div class="card" style="height:1060px ;margin-top: 70px; margin-bottom: 70px;" >
+                        <div class="card" style="height:965px ;margin-top: 70px; margin-bottom: 70px;" >
                         <div class="text-center border border-light p-5">
-                         
+                            <div class="card-block">
                         <img  class="img-fluid mx-auto " src="{% static 'mainapp/sct.jpg' %}" alt="logo">
-                        <form method="post">
+                        <br>
+                        <br>
+                       
+                        <form method="post" >
                                 {% csrf_token %}
                                
                                 {% crispy form %}
                                 <input class="btn btn-primary  btn-block" type="submit" value="Update">
                         </form>
+                        </div>
                     </div>
                         
         <!--  <form class="text-center border border-light p-5">

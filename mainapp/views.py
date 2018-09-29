@@ -1,4 +1,4 @@
-from django.shortcuts import render,HttpResponse,HttpResponseRedirect,redirect
+from django.shortcuts import render,HttpResponse,HttpResponseRedirect,redirect,reverse
 from django.contrib.auth import logout
 from .models import AlmaUser
 from django.views.generic.edit import CreateView
@@ -10,6 +10,10 @@ def login_user(request):
     logout(request)
     return render(request,'mainapp/login.html')
 
+def logout_user(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('mainapp:login_user'))
+    
 def homepage(request):
     #print(request.user.email)
     all_user=AlmaUser.objects.all()
@@ -42,7 +46,17 @@ class AlmaUserCreateView(CreateView):
         model.profile_pic=image
         model.save()
         return HttpResponseRedirect(self.success_url)
+
+
+
+def AlmaListView(request):
+    pass
+
+
     
 
-def UserProfileView(request):
-    pass
+def userprofileview(request):
+    current_user = AlmaUser.objects.get(user_obj=request.user)
+    return render(request,'mainapp/UserProfile.html',{'user':current_user})
+
+  

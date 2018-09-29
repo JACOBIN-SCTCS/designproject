@@ -42,4 +42,18 @@ class AlmaUser(models.Model):
 
     def __str__(self):
         return str(self.name)
+
+
+class Events(models.Model):
+    event_id=models.AutoField(primary_key=True)
+    event_title= models.CharField(max_length=30)
+    event_time=models.DateTimeField()
+    event_venue=models.CharField(max_length=30)
+    event_description=models.TextField()
+    event_poster=models.ImageField(upload_to='event_posters',blank=True)
+    event_going=models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.event_title
+
     
