@@ -16,5 +16,6 @@ urlpatterns=[
     path('dashboard/',views.dashboard,name='dashboard'),
     path('dashboard/user/',views.userprofileview, name='profile_view'),
     path('logout',views.logout_user,name='logout_user'),
+    path('members/',views.AlmaListView,name='list_view'),
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

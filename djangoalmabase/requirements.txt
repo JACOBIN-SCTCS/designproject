@@ -1,6 +1,8 @@
 Pillow
 django_social
 django_bootstrap 
+crispy_forms 
+
 
 
 STATIC FILES DURING DEVELOPMENT TO PRODUCTION

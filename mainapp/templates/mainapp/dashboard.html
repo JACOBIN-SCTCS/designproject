@@ -25,7 +25,20 @@
    body{
        background-color: #F5F5F5;
    }
-  
+
+  .align-items-center {
+  -ms-flex-align: center!important;
+  align-items: center!important;
+}
+.d-flex {
+  display: -ms-flexbox!important;
+  display: flex!important;
+}
+.post_image{
+    float: right;
+}
+
+
   </style>
 </head>
 <body>
@@ -53,7 +66,7 @@
                 </a>
             </li>
             <li class="nav-item" >
-                <a class="nav-link" href="#" style="color: white ; font-weight:bold;">FEATURES</a>
+                <a class="nav-link" href="{% url 'mainapp:list_view' %}" style="color: white ; font-weight:bold;">Database</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#" style="color: white ; font-weight:bold;">PRICING</a>
@@ -84,17 +97,81 @@
  
     </nav>
 
-    <div class="container-fluid " style="margin-top:50px;">
+    <div class="container " style="margin-top:50px;">
             <div class="row">
                     <div class="col-xl-4 col-xs-12">
-                            <div class="card">sdsd</div>
-                        </div>
+                           
+                    </div>
                <div class="col-xl-8 col-xs-12">
-                   <div class="card">sdsd</div>
+                   {% for event in events %}
+                   <!--<div class="accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+                   <div class="card " style="margin-top:30px;  ">
+
+                    
+                     <div class="card-body"> <div class="media">
+                        
+                            {% if  event.event_poster %}
+                             <img src="{{event.event_poster.url}}" class="img-fluid d-flex align-self-center mr-3" style="max-height:400px ;  max-width:200px;">
+                            {% else %}
+                             <img src="{% static 'mainapp/logo.png' %}" class="img-fluid d-flex align-self-center mr-3"   >
+                            {% endif %}
+                            <div class="media-body">
+                                <h5 class="mt-0 font-weight-bold">{{event.event_title}}</h5>
+                                <p>{{event.event_time}}.</p>
+                                <p class="mb-0">{{event.event_venue}}</div>
+                        
+                      </div>
+                    </div>
+                   </div>-->
+
+                   <div class="card mt-50" style="margin-top:30px;" >
+                        <div class="card-body">       
+                            <div class="row">
+                                                        
+                                <div class="col-xl-4">
+                                    {% if  event.event_poster %}  <!--d-flex align-self-center mr-3-->
+                                    <img src="{{event.event_poster.url}}" class="img-fluid post-image " style="max-height:400px ;  max-width:200px;">
+                                     {% else %}
+                                    <img src="{% static 'mainapp/logo.png' %}" class="img-fluid post-image"   >
+                                     {% endif %}
+                                 </div>
+                                
+                                <div class="col-xl-8 ">
+                           
+                                        
+                                        <h4 class="card-title" style="margin-top:10px;">{{event.event_title}}</h4>
+                                        <div class="ml-auto d-flex align-items-center mt-4 mt-md-0">
+                                            <p class="card-text"><i class="fa fa-calendar" aria-hidden="true"></i> : {{event.event_time}} </p>    
+                                        </div>
+                                        <p class="card-text" ><i class="fa fa-map-marker" aria-hidden="true"></i> : {{event.event_venue}}</p>
+                                       <!--<a href="#"><button class="btn btn-primary" style="float:right;" >Expand</button></a>
+                                       -->
+                                       <p>
+                                      
+                                        <button class="btn btn-primary post_image" type="button" data-toggle="collapse" data-target=".collapse{{event.event_id}}" aria-expanded="false" aria-controls="collapse{{event.event_id}}">
+                                          Details
+                                        </button>
+                                      </p>
+                                      <div class="collapse" id="collapse{{event.event_id}}">
+                                        <div class="card card-body">
+                                          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                     </div>
+               
+        
+                {% endfor %}
+
                </div>
-             
+             </div>
             </div>
           </div>
+       
+          
   <!--  <h>{{user.name}}</h>
     <img src="{{user.profile_pic.url}}" alt="PROFILE PIC" >
   -->

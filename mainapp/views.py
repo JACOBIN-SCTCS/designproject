@@ -1,8 +1,9 @@
 from django.shortcuts import render,HttpResponse,HttpResponseRedirect,redirect,reverse
 from django.contrib.auth import logout
-from .models import AlmaUser
+from .models import AlmaUser,Events
 from django.views.generic.edit import CreateView
 from .forms import CreateUserForm
+from django.db.models import Q
 
 
 # Create your views here.
@@ -26,7 +27,8 @@ def homepage(request):
 
 def dashboard(request):
     user=AlmaUser.objects.get(user_email=request.user.email)
-    return render(request,'mainapp/dashboard.html', {'user':user} )
+    events=Events.objects.all()
+    return render(request,'mainapp/dashboard.html', {'user':user , 'events' :events} )
 
 
 class AlmaUserCreateView(CreateView):
@@ -50,13 +52,25 @@ class AlmaUserCreateView(CreateView):
 
 
 def AlmaListView(request):
-    pass
+    current_user = AlmaUser.objects.get(user_obj=request.user)
+    all_users=AlmaUser.objects.all()
+    query=request.GET.get("q")
+    if query:
+        all_users=all_users.filter(Q(name__icontains=query) 
+         
+         )
+    return render(request,'mainapp/display_users.html',{'user':current_user , 'almausers':all_users})
 
 
     
 
 def userprofileview(request):
     current_user = AlmaUser.objects.get(user_obj=request.user)
-    return render(request,'mainapp/UserProfile.html',{'user':current_user})
+   
+     
+         
+    #final_users=all_users.exclude(user_obj=request.user)
+
+    return render(request,'mainapp/UserProfile.html',{'user':current_user })
 
   
