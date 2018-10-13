@@ -4,6 +4,7 @@ from .models import AlmaUser,Events
 from django.views.generic.edit import CreateView
 from .forms import CreateUserForm
 from django.db.models import Q
+import json
 
 
 # Create your views here.
@@ -56,7 +57,9 @@ def AlmaListView(request):
     all_users=AlmaUser.objects.all()
     query=request.GET.get("q")
     if query:
-        all_users=all_users.filter(Q(name__icontains=query) 
+        all_users=all_users.filter(Q(name__icontains=query) |
+        Q(start_year__icontains=query)
+        |Q(end_year__icontains=query)
          
          )
     return render(request,'mainapp/display_users.html',{'user':current_user , 'almausers':all_users})
@@ -74,3 +77,21 @@ def userprofileview(request):
     return render(request,'mainapp/UserProfile.html',{'user':current_user })
 
   
+def event_detail(request,pk):
+    current_user = AlmaUser.objects.get(user_obj=request.user)
+    event =Events.objects.get(event_id=pk)
+    return render(request,'mainapp/event_detail.html', {'user':current_user , 'event':event })
+
+'''def ajax_going(request):
+    if request.is_ajax() and request.POST:
+        event_id =request.POST.get('event_id',None)
+        event=Events.objects.get(event_id=event_id)
+        event.event_going+=1
+        event.save()
+        message='SUCCESS'
+    else:
+        message='FAILURE'
+    ctx=  { 'message': message}
+    return HttpResponse(json.dumps(ctx), content_type='application/json')'''
+
+    

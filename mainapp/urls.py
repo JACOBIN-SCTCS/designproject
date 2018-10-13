@@ -15,7 +15,9 @@ urlpatterns=[
     path('create/',AlmaUserCreateView.as_view(),name='createuser'),
     path('dashboard/',views.dashboard,name='dashboard'),
     path('dashboard/user/',views.userprofileview, name='profile_view'),
+    #path('ajax_going/',views.ajax_going,name='ajax_going'),
     path('logout',views.logout_user,name='logout_user'),
     path('members/',views.AlmaListView,name='list_view'),
+    path('dashboard/events/<int:pk>',views.event_detail,name='event_detail'),
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

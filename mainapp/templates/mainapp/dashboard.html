@@ -38,6 +38,14 @@
     float: right;
 }
 
+@media (min-width: 768px) {
+  .navbar-nav.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+  }
+}
+
 
   </style>
 </head>
@@ -45,57 +53,57 @@
 
  
 
-     <nav class="navbar navbar-expand-lg navbar-inverse bg-inverse  rgba-orange-strong  ">
+    <nav class="mb-1 navbar navbar-expand-lg navbar-dark rgba-orange-strong ">
         <a class="navbar-brand" href="{% url 'mainapp:dashboard' %}">
             <img class ="img-fluid" src="{% static 'mainapp/logo.png' %}" height="50px" style="max-height:50px; height:auto" alt="Logo">
-         
-        </a> 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        
-    </button>
-
-    <div class="collapse navbar-collapse justify-content-center" id="basicExampleNav">
-
-        <!-- Links -->
-        <ul class="navbar-nav >
+  
+      </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-5"
+          aria-controls="navbarSupportedContent-5" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-5">
+  
+          
+  <ul class=" nav navbar-nav navbar-center ">
+  
             <li class="nav-item active">
-                <a class="nav-link" href="#" style="color: white ; font-weight:bold;">HOME
-                    <span class="sr-only">(current)</span>
-                </a>
+           
+              </li>
+              <li class="nav-item" >
+                  <a class="nav-link" href="{% url 'mainapp:list_view' %}" style="color: white ; font-weight:bold;">Database</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#" style="color: white ; font-weight:bold;">NewsFeed</a>
+              </li>
+         
+          </ul>
+  
+          <ul class="navbar-nav ml-auto nav-flex-icons">
+          
+            <li class="nav-item avatar dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-5" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                <img src="{{user.profile_pic.url}}" class="rounded-circle z-depth-0 avatar" alt="avatar image"
+              style="max-height:60px; height:auto;"
+          >
+              </a>
+              <ul class="dropdown-menu" >
+                <li><a class="dropdown-item" href="{% url 'mainapp:profile_view' %}">My Profile</a></li>
+                <li> <a class="dropdown-item" href="#">Another action</a></li>
+                <li> <a class="dropdown-item" href="{% url 'mainapp:logout_user' %}">Sign Out</a></li>
+        
+              </ul>
             </li>
-            <li class="nav-item" >
-                <a class="nav-link" href="{% url 'mainapp:list_view' %}" style="color: white ; font-weight:bold;">Database</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#" style="color: white ; font-weight:bold;">PRICING</a>
-            </li>
-
-            <!-- Dropdown -->
-          <!--  <li class="nav-item avatr dropdown">
-            </li>
-        -->
-
-        </ul>
-
+          </ul>
         </div>
-        <div class="">
-        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">        <img class="ml-auto topnav-right rounded-circle z-depth-0 "  style="background-size: cover; width:50px; height:50px; " src="{{user.profile_pic.url}}" alt="propic">
-        </a>
-                <div class="dropdown-menu dropdown-primary dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="{% url 'mainapp:profile_view' %}">My Profile</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="{% url 'mainapp:logout_user' %}">Sign Out</a>
-                </div>
-            </div>
-
-
-      
-
-    <!-- Collapsible content -->
- 
-    </nav>
+  
+      <ul class="nav navbar-nav">
+               <li class="nav-item"><a class="nav-link waves-effect waves-light">
+                <i class="fa fa-envelope"></i>
+              </a></li>
+      </ul>
+      </nav>
 
     <div class="container " style="margin-top:50px;">
             <div class="row">
@@ -147,16 +155,26 @@
                                        <!--<a href="#"><button class="btn btn-primary" style="float:right;" >Expand</button></a>
                                        -->
                                        <p>
-                                      
-                                        <button class="btn btn-primary post_image" type="button" data-toggle="collapse" data-target=".collapse{{event.event_id}}" aria-expanded="false" aria-controls="collapse{{event.event_id}}">
-                                          Details
-                                        </button>
-                                      </p>
-                                      <div class="collapse" id="collapse{{event.event_id}}">
-                                        <div class="card card-body">
-                                          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+
+                                        <div class="row">
+
+                                            <div class="col-xl-8">
+
+                                               <!-- <input type="button" id="like" name="{{event.event_id}}" value="GOING"/>-->
+                                            </div>
+                                            <div class="col-xl-4 col-xs-12">
+                                                    <form action="{% url 'mainapp:event_detail' pk=event.event_id  %}">
+                                                            <button class="btn btn-primary btn-md" >
+                                                                View
+                                                            </button>
+                                                        </form>
+                                            </div>
                                         </div>
-                                      </div>
+                                      
+                                           
+                                       
+                                      </p>
+                                     
                                     </div>
 
                                 </div>
@@ -170,7 +188,11 @@
              </div>
             </div>
           </div>
-       
+       <br>
+       <br>
+       <br>
+       <br>
+       <br>
           
   <!--  <h>{{user.name}}</h>
     <img src="{{user.profile_pic.url}}" alt="PROFILE PIC" >
@@ -178,4 +200,9 @@
 
     
 </body>
+
+<script>
+
+
+</script>
 </html>

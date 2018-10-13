@@ -1,10 +1,8 @@
 {% load static %}
 <!DOCTYPE html>
-
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -22,23 +20,38 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.10/js/mdb.min.js"></script>
- 
-    <style>
-     body{
-         background-color: #F5F5F5;
-     }
+  <style>
+   body{
+       background-color: #F5F5F5;
+   }
 
-     @media (min-width: 768px) {
+  .align-items-center {
+  -ms-flex-align: center!important;
+  align-items: center!important;
+}
+.d-flex {
+  display: -ms-flexbox!important;
+  display: flex!important;
+}
+.post_image{
+    float: right;
+}
+
+@media (min-width: 768px) {
   .navbar-nav.navbar-center {
     position: absolute;
     left: 50%;
     transform: translatex(-50%);
   }
 }
-    </style>
+
+
+  </style>
 </head>
 <body>
-    
+
+ 
+
    
 
     <nav class="mb-1 navbar navbar-expand-lg navbar-dark rgba-orange-strong ">
@@ -92,60 +105,55 @@
               </a></li>
       </ul>
       </nav>
-
     <br>
     <br>
-     <div class="container">
-         <div class="row">
-             <div class="col-xl-4">
-                 <div class="card" style="margin-top:40px;">
-                     <div class="card-body">
-                    <h4 class="card-title">Search</h4> 
-                    <form method="GET" action="">
-                            
-                                    <div class="col"><input type="text" name="q" class="form-control" placeholder="Search User"/></div>
-                                    <br>
-                                    <div class="text-center">
-                                    <button type="submit" class="btn btn-primary mx-auto"><strong >Submit</strong></button>
-                                </div>
-                    </form>
-                 </div>
-                </div>
-             </div>
-             <div class="col-xl-8">
-                 
-                <div class="row">
-                 
-                    {% for almauser in almausers %}
+    <br>
 
-                    <div class="col-xl-4">
-                        <div class="card" style="margin-top:40px;">
-                           <img class="card-img-top" src="{{almauser.profile_pic.url}}"> 
-                           <div class="card-body card-body-cascade text-center">
-                                <h4 class="card-title"><strong>{{almauser.name}}</strong></h4>
-                                <h5 class="blue-text pb-2"><strong>{{almauser.start_year}} - {{almauser.end_year}} , {{almauser.dept}}</strong></h5>
-                                <hr>
-                                <a class="px-2 fa-lg li-ic " href="{{almauser.linkedin_url}}"><i class="fa fa-linkedin"></i></a>
-                                <!-- Twitter -->
-                                
-                                <a  class="px-2 fa-lg tw-ic " href="{{almauser.facebook_url}}"><i class="fa fa-facebook"></i></a>
-                            </div>
+    <div class="container">
+            <div class="row">
+
+                <div class="col-xl-3">
+                    <div class="card">
+                        {% if  event.event_poster %} 
+                       <div class="view overlay">
+                         <!--d-flex align-self-center mr-3-->
+                        <img src="{{event.event_poster.url}}" class="card-img-top ">
+                         
+                        
+                        
+                                <a href="#!">
+                                <div class="mask rgba-white-slight"></div>
+                                 </a>
                         </div>
-                    </div>
-                    {% endfor %}
+                        {% else %}
+                        <div class="view overlay">
+                                <!--d-flex align-self-center mr-3-->
+                              
+                                
+                               <img src="{% static 'mainapp/logo.png' %}" class="card-img-top">
+                               
+                                       <a href="#!">
+                                       <div class="mask rgba-white-slight"></div>
+                                        </a>
+                               </div>
 
-                 </div>   
-                
-                 
-                     
-                 </div>
-             </div>
-         </div>
-     </div>
-     <br>
-     <br>
-     <br>
-     <br>
-     <br>
+                        {% endif %}
+
+                        <div class="card-body">
+                            <br>
+                        </div>
+                        
+                    </div>
+
+                    
+                </div>
+                <div class="col-xl-4">
+
+                </div>
+                <div class="col-xl-5">
+
+                </div>
+            </div>
+            
+
 </body>
-</html>

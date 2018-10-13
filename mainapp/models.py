@@ -20,6 +20,12 @@ DEPARTMENT_CHOICES =(
     ('PROD','PROD')
 )
 
+TAGS = (
+    ('GENERAL', 'GEN'),
+    ('EVENT', 'EVENT'),
+    ('JOB OFFER' ,'JOB'),
+    
+)
 
 
 
@@ -56,4 +62,11 @@ class Events(models.Model):
     def __str__(self):
         return self.event_title
 
+
+
+
+class NewsFeed(models.Model):
+    post_id=models.AutoField(primary_key=True)
+    user_id=models.ForeignKey(AlmaUser,on_delete=models.CASCADE)
+    tags = models.CharField()
     
