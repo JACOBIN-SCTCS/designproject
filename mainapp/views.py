@@ -1,9 +1,11 @@
 from django.shortcuts import render,HttpResponse,HttpResponseRedirect,redirect,reverse
 from django.contrib.auth import logout
-from .models import AlmaUser,Events
+from .models import AlmaUser,Events,NewsFeed
 from django.views.generic.edit import CreateView
-from .forms import CreateUserForm
+from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
+from .forms import CreateUserForm,CreatePostForm
 from django.db.models import Q
+from django.views import View
 import json
 
 
@@ -15,7 +17,7 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     return HttpResponseRedirect(reverse('mainapp:login_user'))
-    
+
 def homepage(request):
     #print(request.user.email)
     all_user=AlmaUser.objects.all()
@@ -27,7 +29,7 @@ def homepage(request):
         return redirect('mainapp:createuser')
 
 def dashboard(request):
-    user=AlmaUser.objects.get(user_email=request.user.email)
+    user=AlmaUser.objects.get(user_obj=request.user)
     events=Events.objects.all()
     return render(request,'mainapp/dashboard.html', {'user':user , 'events' :events} )
 
@@ -53,34 +55,62 @@ class AlmaUserCreateView(CreateView):
 
 
 def AlmaListView(request):
+
     current_user = AlmaUser.objects.get(user_obj=request.user)
     all_users=AlmaUser.objects.all()
+    users=all_users
     query=request.GET.get("q")
     if query:
-        all_users=all_users.filter(Q(name__icontains=query) |
+
+        users=all_users.filter(Q(name__icontains=query) |
         Q(start_year__icontains=query)
         |Q(end_year__icontains=query)
-         
-         )
-    return render(request,'mainapp/display_users.html',{'user':current_user , 'almausers':all_users})
+        )
+    paginator=Paginator(users,9)
+    page=request.GET.get('page')
+    userlist=paginator.get_page(page)
+    return render(request,'mainapp/display_users.html',{'user':current_user , 'almausers':userlist})
 
 
-    
+
 
 def userprofileview(request):
     current_user = AlmaUser.objects.get(user_obj=request.user)
-   
-     
-         
+
+
+
     #final_users=all_users.exclude(user_obj=request.user)
 
     return render(request,'mainapp/UserProfile.html',{'user':current_user })
 
-  
+
 def event_detail(request,pk):
     current_user = AlmaUser.objects.get(user_obj=request.user)
     event =Events.objects.get(event_id=pk)
     return render(request,'mainapp/event_detail.html', {'user':current_user , 'event':event })
+
+
+def news_feed_page(request):
+    all_posts=NewsFeed.objects.all()
+    current_user= AlmaUser.objects.get(user_obj=request.user)
+    return render(request,'mainapp/newsfeed.html',{'user':current_user, 'posts':all_posts})
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 '''def ajax_going(request):
     if request.is_ajax() and request.POST:
@@ -93,5 +123,3 @@ def event_detail(request,pk):
         message='FAILURE'
     ctx=  { 'message': message}
     return HttpResponse(json.dumps(ctx), content_type='application/json')'''
-
-    

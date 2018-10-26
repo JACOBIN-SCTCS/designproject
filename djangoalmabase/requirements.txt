@@ -6,3 +6,21 @@ crispy_forms
 
 
 STATIC FILES DURING DEVELOPMENT TO PRODUCTION
+
+/*$('#like').click(function(){
+    $.ajax({
+        type:"POST",
+        url:"{% url 'mainapp:ajax_going' %}",
+        data:{'event_id':$(this).attr('name') , 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+        dataType:"json",
+        success:function(response){
+            alert(response.message);
+                      
+
+        },
+        error: function(rs, e) {
+                       alert(rs.responseText);
+                }
+    });
+})
+*/

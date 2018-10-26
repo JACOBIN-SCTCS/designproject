@@ -113,7 +113,7 @@
             <div class="row">
 
                 <div class="col-xl-3">
-                    <div class="card">
+                    <div class="card" style="margin-top:16px;">
                         {% if  event.event_poster %} 
                        <div class="view overlay">
                          <!--d-flex align-self-center mr-3-->
@@ -138,22 +138,43 @@
                                </div>
 
                         {% endif %}
-
                         <div class="card-body">
-                            <br>
+                          <hr>
+                          <br>
+                          <h5 >{{event.event_title}}</h5>
+                         
+                          <p class="card-text"><i class="fa fa-calendar" aria-hidden="true"></i> : {{event.event_time}} </p>    
+
+                          <p class="card-text" ><i class="fa fa-map-marker" aria-hidden="true"></i> : {{event.event_venue}}</p>
+
+
                         </div>
+
+                      
                         
                     </div>
 
                     
                 </div>
-                <div class="col-xl-4">
+                <div class="col-xl-1"></div>
+                <div class="col-xl-7">
+                  <div class="card"  style="margin-top:16px;" >
+                    <div class="card-body" style="padding:30px 30px 30px 30px;">
+                        <p class="card-text">{{event.event_description}}</p>
+                    </div>
+                  </div>
 
                 </div>
-                <div class="col-xl-5">
+                <div class="col-xl-1"></div>
 
-                </div>
+              
+               
             </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
             
 
 </body>

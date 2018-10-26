@@ -1,5 +1,5 @@
 from django.forms import ModelForm,TextInput
-from .models import AlmaUser
+from .models import AlmaUser,NewsFeed
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout ,Row,Div,Field
 
@@ -49,3 +49,22 @@ class CreateUserForm(ModelForm):
          )
    
 
+class CreatePostForm(ModelForm):
+
+    class Meta:
+        model=NewsFeed
+        fields =['tags','image_url','post_desc']
+      
+    def __init__(self,*args,**kwargs):
+        super(CreatePostForm,self).__init__(*args,**kwargs)
+        self.helper=FormHelper(self)
+        self.fields['tags'].label=False
+        self.fields['image_url'].label=False
+        self.fields['post_desc'].label=False
+
+        self.helper.layout= Layout(
+            Field('tags'),
+            Field('image_url'),
+            Field('post_desc',placeholder='Enter Description')
+
+        )

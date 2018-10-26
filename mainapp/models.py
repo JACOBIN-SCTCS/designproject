@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 import datetime
+from django.utils import timezone
 
 START_YEAR_CHOICES =[]
 for i in range(1995,datetime.datetime.now().year+1):
@@ -24,7 +25,7 @@ TAGS = (
     ('GENERAL', 'GEN'),
     ('EVENT', 'EVENT'),
     ('JOB OFFER' ,'JOB'),
-    
+
 )
 
 
@@ -44,7 +45,7 @@ class AlmaUser(models.Model):
     facebook_url=models.CharField(max_length=70)
     linked_in_url=models.CharField(max_length=70)
     profile_pic=models.ImageField(upload_to='profile_pic',blank=True)
-    
+
 
     def __str__(self):
         return str(self.name)
@@ -63,10 +64,17 @@ class Events(models.Model):
         return self.event_title
 
 
-
-
 class NewsFeed(models.Model):
     post_id=models.AutoField(primary_key=True)
+    date_created=models.DateTimeField(default=timezone.now)
     user_id=models.ForeignKey(AlmaUser,on_delete=models.CASCADE)
-    tags = models.CharField()
-    
+    tags = models.CharField(choices=TAGS,max_length=10)
+    image_url=models.ImageField(blank=True ,upload_to='feed_images')
+    post_desc=models.TextField(default='')
+
+    def __str__(self):
+        
+        return str(self.post_id)
+
+
+ 

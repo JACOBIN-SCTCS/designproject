@@ -19,5 +19,6 @@ urlpatterns=[
     path('logout',views.logout_user,name='logout_user'),
     path('members/',views.AlmaListView,name='list_view'),
     path('dashboard/events/<int:pk>',views.event_detail,name='event_detail'),
+    path('forum/',views.news_feed_page,name='forum')
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

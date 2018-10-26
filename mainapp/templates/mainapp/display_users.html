@@ -14,7 +14,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
 <!-- Material Design Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.10/css/mdb.min.css" rel="stylesheet">
-    
+
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- Bootstrap tooltips -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
@@ -22,7 +22,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.10/js/mdb.min.js"></script>
- 
+
     <style>
      body{
          background-color: #F5F5F5;
@@ -38,25 +38,25 @@
     </style>
 </head>
 <body>
-    
-   
+
+
 
     <nav class="mb-1 navbar navbar-expand-lg navbar-dark rgba-orange-strong ">
         <a class="navbar-brand" href="{% url 'mainapp:dashboard' %}">
             <img class ="img-fluid" src="{% static 'mainapp/logo.png' %}" height="50px" style="max-height:50px; height:auto" alt="Logo">
-  
+
       </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-5"
           aria-controls="navbarSupportedContent-5" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent-5">
-  
-          
+
+
   <ul class=" nav navbar-nav navbar-center ">
-  
+
             <li class="nav-item active">
-           
+
               </li>
               <li class="nav-item" >
                   <a class="nav-link" href="{% url 'mainapp:list_view' %}" style="color: white ; font-weight:bold;">Database</a>
@@ -64,11 +64,11 @@
               <li class="nav-item">
                   <a class="nav-link" href="#" style="color: white ; font-weight:bold;">NewsFeed</a>
               </li>
-         
+
           </ul>
-  
+
           <ul class="navbar-nav ml-auto nav-flex-icons">
-          
+
             <li class="nav-item avatar dropdown">
               <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-5" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
@@ -80,12 +80,12 @@
                 <li><a class="dropdown-item" href="{% url 'mainapp:profile_view' %}">My Profile</a></li>
                 <li> <a class="dropdown-item" href="#">Another action</a></li>
                 <li> <a class="dropdown-item" href="{% url 'mainapp:logout_user' %}">Sign Out</a></li>
-        
+
               </ul>
             </li>
           </ul>
         </div>
-  
+
       <ul class="nav navbar-nav">
                <li class="nav-item"><a class="nav-link waves-effect waves-light">
                 <i class="fa fa-envelope"></i>
@@ -100,9 +100,9 @@
              <div class="col-xl-4">
                  <div class="card" style="margin-top:40px;">
                      <div class="card-body">
-                    <h4 class="card-title">Search</h4> 
+                    <h4 class="card-title">Search</h4>
                     <form method="GET" action="">
-                            
+
                                     <div class="col"><input type="text" name="q" class="form-control" placeholder="Search User"/></div>
                                     <br>
                                     <div class="text-center">
@@ -113,31 +113,61 @@
                 </div>
              </div>
              <div class="col-xl-8">
-                 
+
                 <div class="row">
-                 
+
                     {% for almauser in almausers %}
 
                     <div class="col-xl-4">
                         <div class="card" style="margin-top:40px;">
-                           <img class="card-img-top" src="{{almauser.profile_pic.url}}"> 
+                           <img class="card-img-top" src="{{almauser.profile_pic.url}}">
                            <div class="card-body card-body-cascade text-center">
                                 <h4 class="card-title"><strong>{{almauser.name}}</strong></h4>
                                 <h5 class="blue-text pb-2"><strong>{{almauser.start_year}} - {{almauser.end_year}} , {{almauser.dept}}</strong></h5>
                                 <hr>
                                 <a class="px-2 fa-lg li-ic " href="{{almauser.linkedin_url}}"><i class="fa fa-linkedin"></i></a>
                                 <!-- Twitter -->
-                                
+
                                 <a  class="px-2 fa-lg tw-ic " href="{{almauser.facebook_url}}"><i class="fa fa-facebook"></i></a>
                             </div>
                         </div>
                     </div>
                     {% endfor %}
 
-                 </div>   
-                
-                 
-                     
+                 </div>
+                 <br>
+                 <br>
+                 <br>
+                 <div class="row">
+                   <div class="col-xl-10"></div>
+                   <div class="col-xl-2">
+
+
+       <div class="pagination " style="float: right" >
+         <span class="step-links">
+           {% if almausers.has_previous %}
+            <a href="?page=1">&laquo; 1</a>
+            <a href="?page={{almausers.previous_page_number}}"><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i></a>
+           {% endif %}
+
+           <span class="current">
+               Page {{ almausers.number}} of {{almausers.paginator.num_pages }}
+           </span>
+
+           {% if almausers.has_next %}
+                <a href="?page={{ almausers.next_page_number}}"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>
+                <a href="?page={{ almausers.paginator.num_pages}}">{{ almausers.paginator.num_pages}}</a>
+           {% endif %}
+
+
+
+         </span>
+       </div>
+                   </div>
+                 </div>
+
+
+
                  </div>
              </div>
          </div>
