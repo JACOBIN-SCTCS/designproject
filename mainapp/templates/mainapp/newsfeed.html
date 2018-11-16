@@ -108,7 +108,7 @@ body{
                   
                                                           <div class="card">
                                                                   <div class="card-body">
-                                                                               FFFS
+                                                                             ADD POST
                                                                   </div>
                                                           </div>
                   
@@ -133,7 +133,10 @@ body{
                                                                       <div class="col">
                                                                         <div class="d-flex flex-row">
                                                                           <img src="{{post.user_id.profile_pic.url}}" class="img-fluid" style="width:50px;height:50px; border-radius:50%"/>
-                                                                          <div class="p-2">{{post.user_id.name}} <br> {{post.tags}}</div>
+                                                                          <div class="p-3" class="margin-left:20px">
+                                                                            <h5 style="color: blue">{{post.user_id.name}}</h5> 
+                                                                            <span class="badge badge-primary">{{post.tags}}</span>
+                                                                          </div>
                                                                          
                                                                         </div>
                                                                       </div>

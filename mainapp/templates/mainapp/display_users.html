@@ -103,7 +103,7 @@
                     <h4 class="card-title">Search</h4>
                     <form method="GET" action="">
 
-                                    <div class="col"><input type="text" name="q" class="form-control" placeholder="Search User"/></div>
+                                    <div class="col"><input type="text" name="q" class="form-control" placeholder="Search by Year/Name "/></div>
                                     <br>
                                     <div class="text-center">
                                     <button type="submit" class="btn btn-primary mx-auto"><strong >Submit</strong></button>
@@ -119,7 +119,7 @@
                     {% for almauser in almausers %}
 
                     <div class="col-xl-4">
-                        <div class="card" style="margin-top:40px;">
+                        <div class="card" style="margin-top:40px; margin-left: 20px;">
                            <img class="card-img-top" src="{{almauser.profile_pic.url}}">
                            <div class="card-body card-body-cascade text-center">
                                 <h4 class="card-title"><strong>{{almauser.name}}</strong></h4>

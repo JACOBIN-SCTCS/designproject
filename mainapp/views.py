@@ -30,8 +30,13 @@ def homepage(request):
 
 def dashboard(request):
     user=AlmaUser.objects.get(user_obj=request.user)
-    events=Events.objects.all()
-    return render(request,'mainapp/dashboard.html', {'user':user , 'events' :events} )
+    events=Events.objects.all().order_by('-event_time')
+    paginator=Paginator(events,10)
+    page=request.GET.get('page')
+    display_events=paginator.get_page(page)
+
+
+    return render(request,'mainapp/dashboard.html', {'user':user , 'events' :display_events} )
 
 
 class AlmaUserCreateView(CreateView):
