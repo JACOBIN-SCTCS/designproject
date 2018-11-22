@@ -75,7 +75,7 @@
                   <a class="nav-link" href="{% url 'mainapp:list_view' %}" style="color: white ; font-weight:bold;">Database</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="#" style="color: white ; font-weight:bold;">NewsFeed</a>
+                  <a class="nav-link" href="{% url 'mainapp:forum' %}" style="color: white ; font-weight:bold;">NewsFeed</a>
               </li>
          
           </ul>
@@ -148,9 +148,11 @@
                                 <div class="col-xl-8 ">
                            
                                         
-                                        <h4 class="card-title" style="margin-top:10px;">{{event.event_title}}</h4>
+                                        <h4 class="card-title" style="margin-top:10px;"><br></bt>{{event.event_title}}</h4>
                                         <div class="ml-auto d-flex align-items-center mt-4 mt-md-0">
-                                            <p class="card-text"><i class="fa fa-calendar" aria-hidden="true"></i> : {{event.event_time}} </p>    
+                               
+
+                                            <p class="card-text"><br><i class="fa fa-calendar" aria-hidden="true"></i> : {{event.event_time}} </p>    
                                         </div>
                                         <p class="card-text" ><i class="fa fa-map-marker" aria-hidden="true"></i> : {{event.event_venue}}</p>
                                        <!--<a href="#"><button class="btn btn-primary" style="float:right;" >Expand</button></a>
@@ -163,10 +165,10 @@
 
                                                <!-- <input type="button" id="like" name="{{event.event_id}}" value="GOING"/>-->
                                             </div>
-                                            <div class="col-xl-4 col-xs-12">
+                                           <div class="col-xl-4 col-xs-12">
                                                     <form action="{% url 'mainapp:event_detail' pk=event.event_id  %}">
-                                                           <button class="btn  btn-primary btn-md" >
-                                                                <strong><i class="fa fa-eye" aria-hidden="true"></i>  View</strong>
+                                                           <button class="btn  btn-primary btn-md"  style="bottom:10px;">
+                                                                <strong><i class="fa fa-eye"  aria-hidden="true"></i>  View</strong>
                                                             </button>
                                                            
                                                         </form>

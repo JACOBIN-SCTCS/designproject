@@ -96,9 +96,13 @@ def event_detail(request,pk):
 
 
 def news_feed_page(request):
-    all_posts=NewsFeed.objects.all()
+    all_posts=NewsFeed.objects.all().order_by('-date_created')
     current_user= AlmaUser.objects.get(user_obj=request.user)
-    return render(request,'mainapp/newsfeed.html',{'user':current_user, 'posts':all_posts})
+
+    paginator=Paginator(all_posts,1)
+    page=request.GET.get('page')
+    post_pages=paginator.get_page(page)
+    return render(request,'mainapp/newsfeed.html',{'user':current_user, 'posts':post_pages})
 
 
     
