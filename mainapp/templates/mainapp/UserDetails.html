@@ -89,7 +89,7 @@
                             <div class="container">
                                     <div class="row">
                                             <div class="col-xs-12 col-xl-6">
-                                                  {% if user.profile_pic %}
+                                                  {% if curuser.profile_pic %}
 
                                                   <img  id="propic" class="img-responsive z-depth-1"  
                                                   style="border-radius:50%;
@@ -99,7 +99,7 @@
                                                      
 
                                                   "
-                                                  src="{{user.profile_pic.url}}"  alt="profile pic"/>
+                                                  src="{{curuser.profile_pic.url}}"  alt="profile pic"/>
                                        
                                                    
                                                   {% else %}
@@ -118,11 +118,7 @@
                                                   {% endif %}
                                             </div>
                                             <div class="col-xs-12 col-xl-6 " >
-                                                <a id="editprofile" href="#" style="float:right; margin-right: 175px;
-                                                  margin-top: 90px;
-                                                
-                                                " > <i style="margin-right:5px;" class="fas fa-user-edit"></i>Edit Profile </a>
-                                                </div>
+                                               </div>
                                                 
                                         </div>
                                         <br>

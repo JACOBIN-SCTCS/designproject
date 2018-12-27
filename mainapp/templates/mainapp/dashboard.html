@@ -37,8 +37,8 @@
     <div class="mdl-layout__drawer sidebar">
         
 
-      <nav class="mdl-navigation" style="padding-top:70px;">
-        {% if user.profile_pic %}
+      <nav class="mdl-navigation" style="padding-top:150px;">
+      <!--  {% if user.profile_pic %}
             <img class="sidenavitem" src="{{user.profile_pic.url}}" alt="profilepic"/>
         {% else %}
         <img class="sidenavitem" src="https://image.flaticon.com/icons/svg/61/61205.svg" alt="profilepic"/>
@@ -47,10 +47,12 @@
         
         <h2 class="sidenavitem" style="color:white; text-transform: capitalize;">{{user.name}}</h2>
         <br>
-        <br>
+        <br>-->
           <a class=" sidenavitem " href="{% url 'mainapp:profile_view' %}" style="color:white; font-weight: bold;"><i style="margin-right:5px;" class="far fa-user-circle"></i></i>View Profile</a>
 
         <a class=" sidenavitem " href="{% url 'mainapp:list_view' %}" style="color:white; font-weight: bold;"><i style="margin-right:5px;" class="fas fa-database"></i>Alumni Database</a>
+        <a class=" sidenavitem " href="{% url 'mainapp:forum' %}" style="color:white; font-weight: bold;"><i style="margin-right:5px;" class="fas fa-users"></i>Forum</a>
+
         <a class="sidenavitem " href="{% url 'mainapp:logout_user' %}" style="color:white; background-color: #FE4565; font-weight: bold;"> <i style="margin-right:5px;" class="fas fa-sign-out-alt"></i>Logout</a>
       </nav>
     </div>

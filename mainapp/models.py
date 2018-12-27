@@ -78,3 +78,11 @@ class NewsFeed(models.Model):
 
 
  
+class Comments(models.Model):
+    cmnt_id=models.AutoField(primary_key=True)
+    post_id=models.ForeignKey(NewsFeed,on_delete=models.CASCADE)
+    user_id=models.ForeignKey(AlmaUser,on_delete=models.CASCADE)
+    cmnt_text=models.TextField(default='')
+
+    def __str__(self):
+        return str(self.cmnt_id)

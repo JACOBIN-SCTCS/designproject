@@ -8,6 +8,7 @@ from .forms import CreateUserForm,CreatePostForm
 from django.db.models import Q
 from django.views import View
 import json
+from django.http import Http404
 
 
 # Create your views here.
@@ -102,12 +103,27 @@ def news_feed_page(request):
     all_posts=NewsFeed.objects.all().order_by('-date_created')
     current_user= AlmaUser.objects.get(user_obj=request.user)
 
-    paginator=Paginator(all_posts,1)
+    paginator=Paginator(all_posts,7)
     page=request.GET.get('page')
     post_pages=paginator.get_page(page)
     return render(request,'mainapp/newsfeed.html',{'user':current_user, 'posts':post_pages})
 
+@login_required
+def user_detail_view_page(request , user_id):
+    current_user = AlmaUser.objects.get(user_obj=request.user)
 
+    try:
+        user=AlmaUser.objects.get(user_id=user_id)
+
+        
+    
+    except AlmaUser.DoesNotExist:
+        raise Http404("Invalid User")
+    
+    return render(request,'mainapp/UserDetails.html',{
+        'curuser':current_user,
+        'user':user
+    })
     
 
 
