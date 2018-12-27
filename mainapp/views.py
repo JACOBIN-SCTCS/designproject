@@ -1,5 +1,6 @@
 from django.shortcuts import render,HttpResponse,HttpResponseRedirect,redirect,reverse
 from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 from .models import AlmaUser,Events,NewsFeed
 from django.views.generic.edit import CreateView
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
@@ -18,6 +19,7 @@ def logout_user(request):
     logout(request)
     return HttpResponseRedirect(reverse('mainapp:login_user'))
 
+@login_required
 def homepage(request):
     #print(request.user.email)
     all_user=AlmaUser.objects.all()
@@ -28,6 +30,7 @@ def homepage(request):
 
         return redirect('mainapp:createuser')
 
+@login_required
 def dashboard(request):
     user=AlmaUser.objects.get(user_obj=request.user)
     events=Events.objects.all().order_by('-event_time')
@@ -58,7 +61,7 @@ class AlmaUserCreateView(CreateView):
         return HttpResponseRedirect(self.success_url)
 
 
-
+@login_required
 def AlmaListView(request):
 
     current_user = AlmaUser.objects.get(user_obj=request.user)
@@ -78,7 +81,7 @@ def AlmaListView(request):
 
 
 
-
+@login_required
 def userprofileview(request):
     current_user = AlmaUser.objects.get(user_obj=request.user)
 
@@ -88,13 +91,13 @@ def userprofileview(request):
 
     return render(request,'mainapp/UserProfile.html',{'user':current_user })
 
-
+@login_required
 def event_detail(request,pk):
     current_user = AlmaUser.objects.get(user_obj=request.user)
     event =Events.objects.get(event_id=pk)
     return render(request,'mainapp/event_detail.html', {'user':current_user , 'event':event })
 
-
+@login_required
 def news_feed_page(request):
     all_posts=NewsFeed.objects.all().order_by('-date_created')
     current_user= AlmaUser.objects.get(user_obj=request.user)

@@ -8,170 +8,148 @@
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.orange-indigo.min.css" /> 
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
 <!-- Bootstrap core CSS -->
-
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
 <!-- Material Design Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.10/css/mdb.min.css" rel="stylesheet">
-
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.6.0/css/mdb.min.css" rel="stylesheet">
+<!-- JQuery -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- Bootstrap tooltips -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
 <!-- Bootstrap core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.10/js/mdb.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.6.0/js/mdb.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<link  rel="stylesheet" type="text/css" href="{% static 'mainapp/main.css' %}"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
 
-    <style>
-     body{
-         background-color: #F5F5F5;
-     }
-
-     @media (min-width: 768px) {
-  .navbar-nav.navbar-center {
-    position: absolute;
-    left: 50%;
-    transform: translatex(-50%);
-  }
-}
-    </style>
+  
 </head>
 <body>
 
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
+                    
+        <div class="mdl-layout__drawer sidebar">
+         
+            
+            
+    
+          <nav class="mdl-navigation" style="padding-top:180px;">
+                      <a class=" sidenavitem " href="{% url 'mainapp:profile_view' %}" style="color:white; font-weight: bold;"><i style="margin-right:5px;" class="far fa-user-circle"></i></i>View Profile</a>
 
-
-    <nav class="mb-1 navbar navbar-expand-lg navbar-dark rgba-orange-strong ">
-        <a class="navbar-brand" href="{% url 'mainapp:dashboard' %}">
-            <img class ="img-fluid" src="{% static 'mainapp/logo.png' %}" height="50px" style="max-height:50px; height:auto" alt="Logo">
-
-      </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-5"
-          aria-controls="navbarSupportedContent-5" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent-5">
-
-
-  <ul class=" nav navbar-nav navbar-center ">
-
-            <li class="nav-item active">
-
-              </li>
-              <li class="nav-item" >
-                  <a class="nav-link" href="{% url 'mainapp:list_view' %}" style="color: white ; font-weight:bold;">Database</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="{% url 'mainapp:forum' %}" style="color: white ; font-weight:bold;">NewsFeed</a>
-              </li>
-
-          </ul>
-
-          <ul class="navbar-nav ml-auto nav-flex-icons">
-
-            <li class="nav-item avatar dropdown">
-              <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-5" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                <img src="{{user.profile_pic.url}}" class="rounded-circle z-depth-0 avatar" alt="avatar image"
-              style="max-height:60px; height:auto;"
-          >
-              </a>
-              <ul class="dropdown-menu" >
-                <li><a class="dropdown-item" href="{% url 'mainapp:profile_view' %}">My Profile</a></li>
-                <li> <a class="dropdown-item" href="#">Another action</a></li>
-                <li> <a class="dropdown-item" href="{% url 'mainapp:logout_user' %}">Sign Out</a></li>
-
-              </ul>
-            </li>
-          </ul>
+            <a class=" sidenavitem " href="{% url 'mainapp:list_view' %}" style="color:white; font-weight: bold;"><i style="margin-right:5px;" class="fas fa-database"></i>Alumni Database</a>
+            
+            <a class="sidenavitem " href="{% url 'mainapp:logout_user' %}" style="color:white; background-color: #FE4565; font-weight: bold;"> <i style="margin-right:5px;" class="fas fa-sign-out-alt"></i>Logout</a>
+        </nav>
         </div>
+        <main class="mdl-layout__content">
+                <nav class="navbar " style="background-color:#ffffff; padding-top:10px; padding-bottom:10px;  ">
+    
+    
+                        <a class="navbar-brand" href="{% url 'mainapp:dashboard' %}">
+                            <img style="max-width:250px; max-height:250px;" class="img-fluid" src="{% static 'mainapp/logo.png' %}" height="75" alt="Logo">
+                        </a>    
+                    </nav>
 
-      <ul class="nav navbar-nav">
-               <li class="nav-item"><a class="nav-link waves-effect waves-light">
-                <i class="fa fa-envelope"></i>
-              </a></li>
-      </ul>
-      </nav>
 
-    <br>
-    <br>
-     <div class="container">
-         <div class="row">
-             <div class="col-xl-4">
-                 <div class="card" style="margin-top:40px;">
-                     <div class="card-body">
-                    <h4 class="card-title">Search</h4>
-                    <form method="GET" action="">
-
-                                    <div class="col"><input type="text" name="q" class="form-control" placeholder="Search by Year/Name "/></div>
-                                    <br>
-                                    <div class="text-center">
-                                    <button type="submit" class="btn btn-primary mx-auto"><strong >Submit</strong></button>
+                    <div class="container">
+                            <div class="row">
+                                <div class="col-xl-4">
+                                    <div class="card" style="margin-top:40px;">
+                                        <div class="card-body">
+                                       <h4 class="card-title">Search</h4>
+                                       <form method="GET" action="">
+                   
+                                                       <div class="col"><input type="text" name="q" class="form-control" placeholder="Search by Year/Name "/></div>
+                                                       <br>
+                                                       <div class="text-center">
+                                                       <button type="submit" class="btn btn-primary mx-auto"><strong >Submit</strong></button>
+                                                   </div>
+                                       </form>
+                                    </div>
+                                   </div>
                                 </div>
-                    </form>
-                 </div>
-                </div>
-             </div>
-             <div class="col-xl-8">
+                                <div class="col-xl-8">
+                   
+                                   <div class="row">
+                   
+                                       {% for almauser in almausers %}
+                   
+                                       <div class="col-xl-4">
+                                           <div class="card" style="margin-top:40px; margin-left: 20px;">
+                                            {% if almauser.profile_pic %}
+                                            <img class="card-img-top" src="{{almauser.profile_pic.url}}">
 
-                <div class="row">
+                                            {% else %}
+                                            <img class="card-img-top" src="{% static 'mainapp/noimage.png' %}">
 
-                    {% for almauser in almausers %}
-
-                    <div class="col-xl-4">
-                        <div class="card" style="margin-top:40px; margin-left: 20px;">
-                           <img class="card-img-top" src="{{almauser.profile_pic.url}}">
-                           <div class="card-body card-body-cascade text-center">
-                                <h4 class="card-title"><strong>{{almauser.name}}</strong></h4>
-                                <h5 class="blue-text pb-2"><strong>{{almauser.start_year}} - {{almauser.end_year}} , {{almauser.dept}}</strong></h5>
-                                <hr>
-                                <a class="px-2 fa-lg li-ic " href="{{almauser.linkedin_url}}"><i class="fa fa-linkedin"></i></a>
-                                <!-- Twitter -->
-
-                                <a  class="px-2 fa-lg tw-ic " href="{{almauser.facebook_url}}"><i class="fa fa-facebook"></i></a>
+                                            {% endif %}
+                                              <div class="card-body card-body-cascade text-center">
+                                                   <h4 style="text-transform:capitalize;" class="card-title"><strong>{{almauser.name}}</strong></h4>
+                                                   <h5 class="blue-text pb-2"><strong>{{almauser.start_year}} - {{almauser.end_year}} , {{almauser.dept}}</strong></h5>
+                                                   <hr>
+                                                   <a class="px-2 fa-lg li-ic " href="{{almauser.linkedin_url}}"><i class="fab fa-linkedin-in"></i></a>
+                                                   <!-- Twitter -->
+                   
+                                                   <a  class="px-2 fa-lg tw-ic " href="{{almauser.facebook_url}}"><i class="fab fa-facebook-f"></i></a>
+                                               </div>
+                                           </div>
+                                       </div>
+                                       {% endfor %}
+                   
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <div class="row">
+                                      <div class="col-xl-10"></div>
+                                      <div class="col-xl-2">
+                   
+                   
+                          <div class="pagination " style="float: right; padding-right: 30px;"  >
+                            <span class="step-links">
+                              {% if almausers.has_previous %}
+                               <a href="?page=1">&laquo; 1</a>
+                               <a href="?page={{almausers.previous_page_number}}"><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i></a>
+                              {% endif %}
+                   
+                              <span class="current">
+                                  Page {{ almausers.number}} of {{almausers.paginator.num_pages }}
+                              </span>
+                   
+                              {% if almausers.has_next %}
+                                   <a href="?page={{ almausers.next_page_number}}"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>
+                                   <a href="?page={{ almausers.paginator.num_pages}}">{{ almausers.paginator.num_pages}}</a>
+                              {% endif %}
+                   
+                   
+                   
+                            </span>
+                          </div>
+                                      </div>
+                                    </div>
+                   
+                   
+                   
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    {% endfor %}
 
-                 </div>
-                 <br>
-                 <br>
-                 <br>
-                 <div class="row">
-                   <div class="col-xl-10"></div>
-                   <div class="col-xl-2">
+                    </main>
+  </div>
 
 
-       <div class="pagination " style="float: right" >
-         <span class="step-links">
-           {% if almausers.has_previous %}
-            <a href="?page=1">&laquo; 1</a>
-            <a href="?page={{almausers.previous_page_number}}"><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i></a>
-           {% endif %}
+  
 
-           <span class="current">
-               Page {{ almausers.number}} of {{almausers.paginator.num_pages }}
-           </span>
-
-           {% if almausers.has_next %}
-                <a href="?page={{ almausers.next_page_number}}"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>
-                <a href="?page={{ almausers.paginator.num_pages}}">{{ almausers.paginator.num_pages}}</a>
-           {% endif %}
-
-
-
-         </span>
-       </div>
-                   </div>
-                 </div>
-
-
-
-                 </div>
-             </div>
-         </div>
-     </div>
+    
+     
      <br>
      <br>
      <br>

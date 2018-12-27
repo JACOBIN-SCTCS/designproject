@@ -1,0 +1,40 @@
+body{
+    background-color: #F5F5F5;
+}
+
+.align-items-center {
+-ms-flex-align: center!important;
+align-items: center!important;
+}
+.d-flex {
+display: -ms-flexbox!important;
+display: flex!important;
+}
+.post_image{
+ float: right;
+}
+
+ .sidebar{
+     background-color: #263238;
+ }
+
+.sidenavitem{
+  padding-left:50px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+img.sidenavitem{
+ 
+ width:50%;
+ height:30%;
+
+}
+
+a.sidenavitem:hover{
+  background-color:#F57D00;
+}
+
+.btn-primary{
+ background-color: #536DFE!important;
+}
