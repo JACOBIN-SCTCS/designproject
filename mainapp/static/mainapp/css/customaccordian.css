@@ -1,0 +1,41 @@
+button.customaccordion{
+    width:100%;
+    
+    border: none;
+    outline: none;
+    text-align: center;
+    padding: 5px 30px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: white;
+
+}
+/*
+button.customaccordion:hover,button.customaccordion.is_open{
+    
+
+}*/
+
+.customaccordion-content{
+    padding: 0 20px;
+    border-left: 1px solid whitesmoke;
+    max-height:0;
+    overflow: hidden;
+    transition: max-height  0.2s ease-in-out;
+}
+button.customaccordion::after{
+    content:'\f107';
+    font-weight: bolder;
+    font-family: "fontawesome";
+    font-size:14px;
+    float: right;
+    color: #31409F;
+}
+
+
+
+button.customaccordion.is_open::after{
+    content: '\f106';
+    color: #31409F;
+    
+}

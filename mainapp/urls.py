@@ -2,6 +2,7 @@ from django.conf.urls import url
 from django.urls import path
 from . import views
 from .views import AlmaUserCreateView
+from .views import AlmaPostCreateView
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -21,6 +22,9 @@ urlpatterns=[
     path('dashboard/events/<int:pk>',views.event_detail,name='event_detail'),
     path('forum/',views.news_feed_page,name='forum'),
     path('members/user/<int:user_id>',views.user_detail_view_page,name='users_detail'),
+    path('forum/create',AlmaPostCreateView.as_view(),name='createpost'),
+    path('jobsoffers/',views.JobInternView,name='openjobs'),
+
     
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

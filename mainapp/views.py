@@ -1,13 +1,14 @@
 from django.shortcuts import render,HttpResponse,HttpResponseRedirect,redirect,reverse
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from .models import AlmaUser,Events,NewsFeed
+from .models import AlmaUser,Events,JobsIntern,NewsFeed
 from django.views.generic.edit import CreateView
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from .forms import CreateUserForm,CreatePostForm
 from django.db.models import Q
 from django.views import View
 import json
+import datetime
 from django.http import Http404
 
 
@@ -60,6 +61,26 @@ class AlmaUserCreateView(CreateView):
         model.profile_pic=image
         model.save()
         return HttpResponseRedirect(self.success_url)
+
+
+class AlmaPostCreateView(CreateView):
+
+    model=NewsFeed
+    form_class=CreatePostForm
+
+    template_name_suffix='_createpostform'
+
+    success_url='/forum/'
+
+    def form_valid(self,form):
+        model=form.save(commit=False)
+        model.date_created=datetime.datetime.now()
+        curuser=AlmaUser.objects.get(user_obj=self.request.user)
+        model.user_id=curuser
+        model.save()
+        return HttpResponseRedirect(self.success_url)
+
+
 
 
 @login_required
@@ -124,7 +145,24 @@ def user_detail_view_page(request , user_id):
         'curuser':current_user,
         'user':user
     })
+
+@login_required
+def JobInternView(request):
     
+    try:
+        all_jobs=JobsIntern.objects.all()
+        query=request.GET.get("q")
+        if query:
+            all_jobs=all_jobs.filter(Q(company_name__icontains=query)
+            |
+                Q(job_desc__icontains=query)
+            )
+        paginator=Paginator(all_jobs,6)
+        page=request.GET.get('page')
+        all_jobs=paginator.get_page(page)
+    except:
+        all_jobs=None
+    return render(request,'mainapp/openjobs.html',{'jobs':all_jobs})
 
 
 

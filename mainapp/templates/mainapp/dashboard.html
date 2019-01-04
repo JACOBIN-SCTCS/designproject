@@ -24,7 +24,7 @@
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.6.0/js/mdb.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-<link  rel="stylesheet" type="text/css" href="{% static 'mainapp/main.css' %}"/>
+<link  rel="stylesheet" type="text/css" href="{% static 'mainapp/css/main.css' %}"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
  
 </head>
@@ -51,6 +51,8 @@
           <a class=" sidenavitem " href="{% url 'mainapp:profile_view' %}" style="color:white; font-weight: bold;"><i style="margin-right:5px;" class="far fa-user-circle"></i></i>View Profile</a>
 
         <a class=" sidenavitem " href="{% url 'mainapp:list_view' %}" style="color:white; font-weight: bold;"><i style="margin-right:5px;" class="fas fa-database"></i>Alumni Database</a>
+        <a class=" sidenavitem " href="{% url 'mainapp:openjobs' %}" style="color:white; font-weight: bold;"><i style="margin-right:5px;" class="fas fa-briefcase"></i>Jobs/Internship</a>
+
         <a class=" sidenavitem " href="{% url 'mainapp:forum' %}" style="color:white; font-weight: bold;"><i style="margin-right:5px;" class="fas fa-users"></i>Forum</a>
 
         <a class="sidenavitem " href="{% url 'mainapp:logout_user' %}" style="color:white; background-color: #FE4565; font-weight: bold;"> <i style="margin-right:5px;" class="fas fa-sign-out-alt"></i>Logout</a>

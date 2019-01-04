@@ -1,7 +1,10 @@
 from django.forms import ModelForm,TextInput
 from .models import AlmaUser,NewsFeed
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout ,Row,Div,Field
+from crispy_forms.layout import Layout ,Row,Div,Field,Column,Submit
+from django.utils.safestring import mark_safe
+from django import forms
+
 
 
 
@@ -42,29 +45,37 @@ class CreateUserForm(ModelForm):
              Field('facebook_url',placeholder="Enter your Facebook profile Link"),
              Field('linked_in_url',placeholder="Enter your linkedIn Profile"),
 
-             'profile_pic'
-            
+             'profile_pic',
+            Submit('submit', 'Submit', css_class='button expandedbutton'),
+
              
 
          )
-   
 
+   
 class CreatePostForm(ModelForm):
 
+    
     class Meta:
         model=NewsFeed
-        fields =['tags','image_url','post_desc']
-      
-    def __init__(self,*args,**kwargs):
+        fields=['tags','image_url','post_desc']
+           
+
+    def __init__(self, *args, **kwargs):
         super(CreatePostForm,self).__init__(*args,**kwargs)
         self.helper=FormHelper(self)
-        self.fields['tags'].label=False
-        self.fields['image_url'].label=False
-        self.fields['post_desc'].label=False
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-lg-4'
+        self.helper.field_class = 'col-lg-8'
 
-        self.helper.layout= Layout(
-            Field('tags'),
-            Field('image_url'),
-            Field('post_desc',placeholder='Enter Description')
-
+        self.fields['tags'].label='TAG'
+        self.fields['post_desc'].label='Post Description'
+        self.fields['image_url'].label='Upload Image'
+        self.helper.layout=Layout(  
+                'tags',
+                Field('post_desc',placeholder='Enter Post Description'),
+                
+                'image_url',
+                Submit('submit', 'Submit', css_class='button expandedbutton')
         )
+

@@ -86,3 +86,16 @@ class Comments(models.Model):
 
     def __str__(self):
         return str(self.cmnt_id)
+
+
+class JobsIntern(models.Model):
+   
+    job_id=models.AutoField(primary_key=True)
+    job_desc=models.CharField(max_length=40,default='')
+    company_name=models.CharField(max_length=40 , default='')
+    stipend=models.IntegerField(default=0,blank=True)
+    apply_by =models.DateField(blank=True)
+    requirements =models.TextField(default='')
+
+    def __str__(self):
+        return self.job_desc
