@@ -37,11 +37,9 @@
     display: none;
 }
     </style>
+    
 </head>
 <body>
-
-
-
 
 
 
@@ -80,44 +78,37 @@
                                     <img style="max-width:250px; max-height:250px;" class="img-fluid" src="{% static 'mainapp/logo.png' %}" height="75" alt="Logo">
                                 </a>    
                             </nav>
+
+
+                        <br>
+                        <div class="row">
+                                <div class="col-xl-3 col-xs-12"></div>
+                                <div class="col-xl-6 col-xs-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="card-title"><center>Submit New Opportunity</center></h4>
+                                               <hr>
+                                               <br>
+                                            {% load crispy_forms_tags %}
+   
+                                               <form method="post" enctype="multipart/form-data" action="">
+                                                   {% csrf_token %}
+                                           
+                                                   {% crispy form %}
+                                               </form>
+                                        </div>
+                                        <br>
+                                    </div>
+                                </div>   
+                                <div class="col-xl-3 col-xs-12"></div>
+                            </div>
+
                             <br>
-
-                         <div class="row">
-                             <div class="col-xl-3 col-xs-12"></div>
-                             <div style = "margin-left: 5px; 
-                                            margin-right: 5px;
-                                            " class="col-xl-6 col-xs-12">
-                                 <div class="card">
-                                     <div class="card-body">
-                                         <h4 class="card-title"><center>Create Post</center></h4>
-                                            <hr>
-                                            <br>
-                                         {% load crispy_forms_tags %}
-
-                                            <form method="post" enctype="multipart/form-data" action="">
-                                                {% csrf_token %}
-                                        
-                                                {% crispy form %}
-                                            </form>
-                                     </div>
-                                 </div>
-                             </div>   
-                             <div class="col-xl-3 col-xs-12"></div>
-                         </div>   
-                         <br>
-                         <br>
-                         <br>
+                            <br>
+                            <br>
                 </main>
-
                 </div>
-            
-
-
-
-
-
-
-      
+                </body>
     
-</body>
+
 </html>

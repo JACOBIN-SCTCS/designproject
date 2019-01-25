@@ -27,6 +27,11 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
 <link  rel="stylesheet" type="text/css" href="{% static 'mainapp/css/customaccordian.css' %}"/>
 
+<style>
+.additems:hover{
+  color: #9E9E9E;
+}
+</style>
 
 </head>
 <body>
@@ -89,7 +94,24 @@
                                    </form>
                                 </div>
                                </div>
-                        <br>
+
+                               <br>
+                               <div class="card">
+                                    <div class="card-body">
+                                               
+                                        <table class="table table-striped">
+                                        <tr>
+                                          <td>
+                                              <center><a style="outline: none;" class="additems" href="{% url 'mainapp:createjob' %}">
+                                                  <h5><i style="margin-right:5px;" class="far fa-plus-square"></i> New Job/Internship </h5>
+                                              </a></center>
+                                          </td>
+                                        </tr>  
+
+                                        </table>
+                                    </div>
+                            </div>
+                            <br>
                         </div>
   
 
@@ -161,7 +183,11 @@
 
                   </div>
                 </div>
-                
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
     </main>
 </div>
 <script type="text/javascript" src="{% static 'mainapp/js/customaccordion.js' %}"></script>

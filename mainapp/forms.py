@@ -1,5 +1,5 @@
 from django.forms import ModelForm,TextInput
-from .models import AlmaUser,NewsFeed
+from .models import AlmaUser,NewsFeed,JobsIntern
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout ,Row,Div,Field,Column,Submit
 from django.utils.safestring import mark_safe
@@ -79,3 +79,34 @@ class CreatePostForm(ModelForm):
                 Submit('submit', 'Submit', css_class='button expandedbutton')
         )
 
+class CreateJobForm(ModelForm):
+
+    class Meta:
+        model=JobsIntern
+        fields=['job_desc','company_name','stipend' ,'apply_by' ,'requirements']
+    
+    def __init__(self, *args, **kwargs):
+        super(CreateJobForm,self).__init__(*args,**kwargs)
+        self.helper=FormHelper(self)
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-lg-4'
+        self.helper.field_class = 'col-lg-8'
+
+        self.fields['job_desc'].label='Job Description'
+        self.fields['company_name'].label='Company Name'
+        self.fields['stipend'].label='Stipend'
+        self.fields['apply_by'].label='Deadline'
+        self.fields['requirements'].label='Details'
+
+
+
+
+        self.helper.layout=Layout( 
+            'job_desc',
+            'company_name',
+            'stipend',
+            'apply_by',
+            'requirements',
+            Submit('submit', 'Submit', css_class='button expandedbutton'),
+
+        )

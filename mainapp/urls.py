@@ -3,6 +3,7 @@ from django.urls import path
 from . import views
 from .views import AlmaUserCreateView
 from .views import AlmaPostCreateView
+from .views import AlmaJobCreateView
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -10,7 +11,6 @@ from django.conf.urls.static import static
 app_name='mainapp'
 
 urlpatterns=[
-
     path('login/' , views.login_user,name='login_user'),
     path('',views.homepage,name='homepage'),
     path('create/',AlmaUserCreateView.as_view(),name='createuser'),
@@ -24,6 +24,7 @@ urlpatterns=[
     path('members/user/<int:user_id>',views.user_detail_view_page,name='users_detail'),
     path('forum/create',AlmaPostCreateView.as_view(),name='createpost'),
     path('jobsoffers/',views.JobInternView,name='openjobs'),
+    path('jobsoffers/create',AlmaJobCreateView.as_view(),name='createjob'),
 
     
     

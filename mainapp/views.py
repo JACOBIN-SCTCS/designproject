@@ -4,12 +4,13 @@ from django.contrib.auth.decorators import login_required
 from .models import AlmaUser,Events,JobsIntern,NewsFeed
 from django.views.generic.edit import CreateView
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
-from .forms import CreateUserForm,CreatePostForm
+from .forms import CreateUserForm,CreatePostForm,CreateJobForm
 from django.db.models import Q
 from django.views import View
 import json
 import datetime
 from django.http import Http404
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Create your views here.
@@ -21,18 +22,12 @@ def logout_user(request):
     logout(request)
     return HttpResponseRedirect(reverse('mainapp:login_user'))
 
-@login_required
+
 def homepage(request):
     #print(request.user.email)
-    all_user=AlmaUser.objects.all()
-    current_user=all_user.filter(user_email=request.user.email)
-    if current_user:
-        return redirect('mainapp:dashboard')
-    else:
+    return render(request, 'mainapp/index.html',{})
 
-        return redirect('mainapp:createuser')
 
-@login_required
 def dashboard(request):
     user=AlmaUser.objects.get(user_obj=request.user)
     events=Events.objects.all().order_by('-event_time')
@@ -63,7 +58,7 @@ class AlmaUserCreateView(CreateView):
         return HttpResponseRedirect(self.success_url)
 
 
-class AlmaPostCreateView(CreateView):
+class AlmaPostCreateView(LoginRequiredMixin,CreateView):
 
     model=NewsFeed
     form_class=CreatePostForm
@@ -150,7 +145,7 @@ def user_detail_view_page(request , user_id):
 def JobInternView(request):
     
     try:
-        all_jobs=JobsIntern.objects.all()
+        all_jobs=JobsIntern.objects.all().order_by('-job_id')
         query=request.GET.get("q")
         if query:
             all_jobs=all_jobs.filter(Q(company_name__icontains=query)
@@ -162,14 +157,29 @@ def JobInternView(request):
         all_jobs=paginator.get_page(page)
     except:
         all_jobs=None
-    return render(request,'mainapp/openjobs.html',{'jobs':all_jobs})
+   
+    return render(request,'mainapp/openjobs.html',{'jobs':all_jobs })
 
 
 
 
 
+class AlmaJobCreateView(LoginRequiredMixin,CreateView):
+    model=JobsIntern
+    form_class=CreateJobForm
+    template_name_suffix='_createform'
+
+    success_url='/jobsoffers/'
+
+    
+    def form_valid(self,form):
+        model=form.save(commit=False)
+        model.save()
+        return HttpResponseRedirect(self.success_url)
 
 
+def UserActivity(request):
+    pass
 
 
 

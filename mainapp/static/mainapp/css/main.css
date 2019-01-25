@@ -31,6 +31,10 @@ img.sidenavitem{
 
 }
 
+a.sidenavitem{
+  outline: none;
+}
+
 a.sidenavitem:hover{
   background-color:#F57D00;
 }

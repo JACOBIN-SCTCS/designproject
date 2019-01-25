@@ -58,7 +58,7 @@ body{
   color: #9E9E9E;
 }
 
-    
+
     
     </style>
 
@@ -82,7 +82,8 @@ body{
         <h2 class="sidenavitem" style="color:white; text-transform: capitalize;">{{user.name}}</h2>
         <br>
         <br>-->
-          <a class=" sidenavitem " href="{% url 'mainapp:profile_view' %}" style="color:white; font-weight: bold;"><i style="margin-right:5px;" class="far fa-user-circle"></i></i>View Profile</a>
+        <a class=" sidenavitem " href="{% url 'mainapp:profile_view' %}" style="color:white; font-weight: bold;"><i style="margin-right:5px;" class="far fa-user-circle"></i></i>View Profile</a>
+        <a class=" sidenavitem " href="#" style="color:white; font-weight: bold;"><i style="margin-right:5px;" class="far fa-edit"></i></i>Your Activity</a>
 
         <a class=" sidenavitem " href="{% url 'mainapp:list_view' %}" style="color:white; font-weight: bold;"><i style="margin-right:5px;" class="fas fa-database"></i>Alumni Database</a>
         <a class=" sidenavitem " href="{% url 'mainapp:openjobs' %}" style="color:white; font-weight: bold;"><i style="margin-right:5px;" class="fas fa-briefcase"></i>Jobs/Internship</a>
@@ -103,11 +104,11 @@ body{
 
                 <br>
                               <br>
-                              
+                             
 
                               <div class="container">
                                         <div class="row">
-                                                        <div style="padding-left: 20px;" class="col-xl-4">
+                                                       <!-- <div style="padding-left: 20px;" class="col-xl-4">
                   
                                                           <div class="card">
                                                                   <div class="card-body">
@@ -121,21 +122,6 @@ body{
                                                                         </td>
                                                                       </tr>  
 
-                                                                      <tr>
-                                                                          <td>
-                                                                              <center><a class="additems" href="#">
-                                                                                  <h5><i style="margin-right:5px;" class="far fa-edit"></i>Your Posts</h5>
-                                                                              </a></center>
-                                                                            
-                                                                          </td>
-                                                                        </tr> 
-
-                                                                        <tr>
-                                                                            <td>
-                                                                                <!-- TODO  -->
-                                                                              
-                                                                            </td>
-                                                                          </tr> 
                                                                       </table>
                                                                   </div>
                                                           </div>
@@ -143,8 +129,9 @@ body{
                                                                 
                                                           <br>
                                                         </div>
-                                                        <div class="col-xl-1"></div>
-                                                        <div class="col-xl-6">
+                                                        -->
+                                                        <div class="col-xl-2"></div>
+                                                        <div class="col-xl-7">
 
                                                           {% if posts%}
                                                               {% for post in posts %}
@@ -182,7 +169,7 @@ body{
                                                                         </div>
                                                                       </div>
                                                                       </div>
-                                                                      <br>
+                                                                      
                                                                       
                                                                       <p style="padding-top:8px;">{{post.post_desc}}</p>
                                                                     
@@ -195,6 +182,7 @@ body{
                                                                         display: block;
                                                                         border:1px solid whitesmoke;
                                                                         "
+                                                                        class="img-fluid"
                                                                         src="{{post.image_url.url}}"alt='Image Not Loaded' class="img-fluid " />
 
                                                                       {% endif %}
@@ -206,10 +194,17 @@ body{
                                                                     </div>
                                                                   </div>
                                                                   <br>
+
                                                                  
                                                               {% endfor %}
 
                                                           {% endif %}
+                                                  
+                                                          
+                                                          
+                                                            
+                                                         
+                                                         
                                                           
                                                           <div class="row">
                                                             <div class="col-xl-5"></div>
@@ -240,13 +235,14 @@ body{
                                                          
                   
                                                         </div>
-                                                        <div class="col-xl-3"></div>
+                                                       
+                                                        </div>
                                                         <br>
                                                 </div>
                         
 
                               </div>
-                             
+                              
                               
                              
                               <br>
