@@ -12,22 +12,23 @@ import datetime
 from django.http import Http404
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-
+'''
 # Create your views here.
 def login_user(request):
     logout(request)
     return render(request,'mainapp/login.html')
-
+'''
 def logout_user(request):
     logout(request)
-    return HttpResponseRedirect(reverse('mainapp:login_user'))
+    return HttpResponseRedirect(reverse('mainapp:homepage'))
 
 
 def homepage(request):
     #print(request.user.email)
+    logout(request)
     return render(request, 'mainapp/index.html',{})
 
-
+@login_required
 def dashboard(request):
     user=AlmaUser.objects.get(user_obj=request.user)
     events=Events.objects.all().order_by('-event_time')

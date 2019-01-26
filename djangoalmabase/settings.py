@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
-
+import django_heroku
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'crispy_forms',
 ]
 
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -160,8 +160,8 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.user.user_details',
 )
 
-LOGIN_URL = 'mainapp:login_user'
-LOGIN_REDIRECT_URL = 'mainapp:homepage'
+LOGIN_URL = 'mainapp:homepage'
+LOGIN_REDIRECT_URL = 'mainapp:dashboard'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
@@ -180,7 +180,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 MEDIA_URL = '/media/'
-MEDAI_ROOT= os.path.join(BASE_DIR,'media')
+MEDIA_ROOT= os.path.join(BASE_DIR,'media')
 
 
 STATIC_URL = '/static/'
@@ -188,3 +188,6 @@ STATIC_URL = '/static/'
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='708035323392-st6td1r7239ojbivi97lqu604bij28o1.apps.googleusercontent.com'  #Paste CLient Key
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'gN-83czo64_rV8npffU7mWFP'
+
+
+django_heroku.settings(locals())

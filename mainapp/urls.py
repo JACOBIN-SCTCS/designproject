@@ -11,7 +11,7 @@ from django.conf.urls.static import static
 app_name='mainapp'
 
 urlpatterns=[
-    path('login/' , views.login_user,name='login_user'),
+    #path('login/' , views.login_user,name='login_user'),
     path('',views.homepage,name='homepage'),
     path('create/',AlmaUserCreateView.as_view(),name='createuser'),
     path('dashboard/',views.dashboard,name='dashboard'),
