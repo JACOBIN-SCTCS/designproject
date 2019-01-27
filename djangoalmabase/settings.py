@@ -160,8 +160,8 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.user.user_details',
 )
 
-LOGIN_URL = 'mainapp:homepage'
-LOGIN_REDIRECT_URL = 'mainapp:dashboard'
+LOGIN_URL = 'mainapp:login_user'
+LOGIN_REDIRECT_URL = 'mainapp:homepage'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
