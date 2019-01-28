@@ -1,3 +1,3 @@
+SCTCE ALUMNI WEBSITE
 
-
-DESIGN PROJECT USING DJANGO
+BETA AT sctcealumnibeta.herokuapp.com
